@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.rent.rent.RentApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.362 s - in com.rent.rent.RentApplicationTests
