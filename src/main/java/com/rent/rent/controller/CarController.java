@@ -27,25 +27,26 @@ public class CarController {
     ////Show one car
     @GetMapping(value = "/car/{id}") //Call this methode only for a get request
     public String displayCar(@PathVariable int id){
-        return this.restTemplate.getForObject("http://localhost:8081/car/" + id, String.class);
+        return this.restTemplate.getForObject(endpoint+"/car/" + id, String.class);
     }
 
     ////Show add car
     @PostMapping(value = "/car") //Call this methode only for a get request
     public Object displayCar(@RequestBody Object object){
-        return this.restTemplate.postForObject("http://localhost:8081/car/", object, Object.class);
+        return this.restTemplate.postForObject(endpoint+"/car/", object, Object.class);
     }
 
-    @PostMapping(value = {"/car/update"})
-    public Object updateCar(@RequestBody Object object) {
-        return this.restTemplate.postForObject("http://localhost:8081/car/update/", object, Object.class);
+    @PutMapping(value = {"/car/{id}"})
+    public Object updateCar(@RequestBody Object object, @PathVariable int id) {
+        this.restTemplate.put(endpoint+"/car/"+id, object);
+        return this.displayCar(id);
     }
 
     //Delete one product
     @DeleteMapping(value = "/car/{id}")
     public Boolean deleteCar(@PathVariable int id) {
         if (this.displayCar(id) != null) {
-            this.restTemplate.delete("http://localhost:8081/car/" + id);
+            this.restTemplate.delete(endpoint+"/car/" + id);
             return true;
         }
        return false;
